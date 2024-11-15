@@ -36,6 +36,7 @@
             MoveFrom = new FolderBrowserDialog();
             AddExtensionBtn = new Button();
             groupBox1 = new GroupBox();
+            RemoveExtensionBtn = new Button();
             MoveAllCheckbox = new CheckBox();
             groupBox2 = new GroupBox();
             FolderFromInput = new TextBox();
@@ -108,6 +109,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(RemoveExtensionBtn);
             groupBox1.Controls.Add(MoveAllCheckbox);
             groupBox1.Controls.Add(ExtensionInput);
             groupBox1.Controls.Add(AddExtensionBtn);
@@ -122,6 +124,18 @@
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Ext";
+            // 
+            // RemoveExtensionBtn
+            // 
+            RemoveExtensionBtn.ForeColor = Color.FromArgb(48, 48, 48);
+            RemoveExtensionBtn.Location = new Point(173, 149);
+            RemoveExtensionBtn.Margin = new Padding(4, 3, 4, 3);
+            RemoveExtensionBtn.Name = "RemoveExtensionBtn";
+            RemoveExtensionBtn.Size = new Size(96, 31);
+            RemoveExtensionBtn.TabIndex = 6;
+            RemoveExtensionBtn.Text = "Remove";
+            RemoveExtensionBtn.UseVisualStyleBackColor = true;
+            RemoveExtensionBtn.Click += RemoveExtensionBtn_Click;
             // 
             // MoveAllCheckbox
             // 
@@ -209,11 +223,11 @@
             // 
             groupBox4.Controls.Add(OverwriteCheckBox);
             groupBox4.ForeColor = Color.White;
-            groupBox4.Location = new Point(781, 12);
+            groupBox4.Location = new Point(781, 249);
             groupBox4.Margin = new Padding(4, 3, 4, 3);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new Padding(4, 3, 4, 3);
-            groupBox4.Size = new Size(360, 389);
+            groupBox4.Size = new Size(360, 152);
             groupBox4.TabIndex = 0;
             groupBox4.TabStop = false;
             groupBox4.Text = "Settings";
@@ -232,12 +246,12 @@
             // StatusLabel
             // 
             StatusLabel.Font = new Font("Segoe UI", 12F);
-            StatusLabel.Location = new Point(440, 158);
+            StatusLabel.Location = new Point(419, 9);
             StatusLabel.Margin = new Padding(4, 0, 4, 0);
             StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new Size(293, 130);
+            StatusLabel.Size = new Size(722, 234);
             StatusLabel.TabIndex = 10;
-            StatusLabel.TextAlign = ContentAlignment.MiddleCenter;
+            StatusLabel.TextAlign = ContentAlignment.BottomLeft;
             // 
             // MoveProgress
             // 
@@ -297,5 +311,6 @@
         private ProgressBar MoveProgress;
         private CheckBox OverwriteCheckBox;
         private CheckBox MoveAllCheckbox;
+        private Button RemoveExtensionBtn;
     }
 }
