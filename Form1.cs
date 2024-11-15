@@ -29,10 +29,7 @@ public partial class Form1 : Form
         ExtensionInput.Text = string.Empty;
     }
 
-    private void AddExtensionBtn_Click(object sender, EventArgs e)
-    {
-        AddExtension();
-    }
+    private void AddExtensionBtn_Click(object sender, EventArgs e) => AddExtension();
 
     private void ExtensionInput_KeyPress(object sender, KeyPressEventArgs e)
     {
@@ -53,6 +50,13 @@ public partial class Form1 : Form
         MoveTo.Dispose();
     }
 
+    private void UpdateStatus(string filePath, string destinationPath)
+    {
+        StatusLabel.Invoke(() => StatusLabel.Text = $"Moved: {filePath} to {destinationPath}");
+        MoveProgress.Invoke(() => MoveProgress.Increment(1));
+    }
+
+
     private void StartMove()
     {
         bool fromExists = Directory.Exists(FolderFromInput.Text);
@@ -60,23 +64,40 @@ public partial class Form1 : Form
         if (fromExists && toExists)
         {
             MoveProgress.Invoke(() => MoveProgress.Maximum = FileExtensionsList.Items.Count);
-            foreach (string filePath in Directory.GetFiles(FolderFromInput.Text))
+
+            if (!MoveAllCheckbox.Checked)
             {
-                string fileExtension = Path.GetExtension(filePath);
+                foreach (string filePath in Directory.GetFiles(FolderFromInput.Text))
+                {
+                    string fileExtension = Path.GetExtension(filePath);
 
-                HashSet<string> extensions = new(FileExtensionsList.Items.Cast<string>(), StringComparer.OrdinalIgnoreCase);
+                    HashSet<string> extensions = new(FileExtensionsList.Items.Cast<string>(), StringComparer.OrdinalIgnoreCase);
 
-                if (extensions.Contains(fileExtension))
+                    if (extensions.Contains(fileExtension))
+                    {
+                        string fileName = Path.GetFileName(filePath);
+                        string destinationPath = Path.Combine(FolderToInput.Text, fileName);
+
+                        File.Move(filePath, destinationPath, OverwriteCheckBox.Checked);
+                        UpdateStatus(filePath, destinationPath);
+                    }
+
+                    Thread.Sleep(50);
+
+                }
+            }
+            else
+            {
+                foreach (string filePath in Directory.GetFiles(FolderFromInput.Text))
                 {
                     string fileName = Path.GetFileName(filePath);
                     string destinationPath = Path.Combine(FolderToInput.Text, fileName);
 
                     File.Move(filePath, destinationPath, OverwriteCheckBox.Checked);
-                    StatusLabel.Invoke(() => StatusLabel.Text = $"Moved: {filePath} to {destinationPath}");
-                    MoveProgress.Invoke(() => MoveProgress.Increment(1));
-                }
+                    UpdateStatus(filePath, destinationPath);
 
-                Thread.Sleep(50);
+                    Thread.Sleep(50);
+                }
             }
 
             StatusLabel.Invoke(() => StatusLabel.Text = string.Empty);
@@ -113,10 +134,7 @@ public partial class Form1 : Form
         FileExtensionsList.Enabled = enabled;
     }
 
-    private void MoveAllCheckbox_CheckedChanged(object sender, EventArgs e)
-    {
-        ExtUI(!MoveAllCheckbox.Checked);
-    }
+    private void MoveAllCheckbox_CheckedChanged(object sender, EventArgs e) => ExtUI(!MoveAllCheckbox.Checked);
 
     private void RemoveExtensionBtn_Click(object sender, EventArgs e) => FileExtensionsList.Items.Remove(FileExtensionsList.SelectedItem);
 }
