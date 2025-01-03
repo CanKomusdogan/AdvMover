@@ -48,6 +48,7 @@
             OverwriteCheckBox = new CheckBox();
             StatusLabel = new Label();
             MoveProgress = new ProgressBar();
+            MediaPackButton = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -56,7 +57,7 @@
             // 
             // label1
             // 
-            label1.Font = new Font("Montserrat", 12F);
+            label1.Font = new Font("Microsoft Sans Serif", 12F);
             label1.Location = new Point(23, 29);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -67,11 +68,11 @@
             // FileExtensionsList
             // 
             FileExtensionsList.FormattingEnabled = true;
-            FileExtensionsList.ItemHeight = 25;
+            FileExtensionsList.ItemHeight = 15;
             FileExtensionsList.Location = new Point(23, 214);
             FileExtensionsList.Margin = new Padding(4, 3, 4, 3);
             FileExtensionsList.Name = "FileExtensionsList";
-            FileExtensionsList.Size = new Size(246, 129);
+            FileExtensionsList.Size = new Size(246, 124);
             FileExtensionsList.TabIndex = 1;
             // 
             // ExtensionInput
@@ -79,7 +80,7 @@
             ExtensionInput.Location = new Point(28, 112);
             ExtensionInput.Margin = new Padding(4, 3, 4, 3);
             ExtensionInput.Name = "ExtensionInput";
-            ExtensionInput.Size = new Size(246, 29);
+            ExtensionInput.Size = new Size(246, 21);
             ExtensionInput.TabIndex = 2;
             ExtensionInput.KeyPress += ExtensionInput_KeyPress;
             // 
@@ -109,6 +110,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(MediaPackButton);
             groupBox1.Controls.Add(RemoveExtensionBtn);
             groupBox1.Controls.Add(MoveAllCheckbox);
             groupBox1.Controls.Add(ExtensionInput);
@@ -140,10 +142,10 @@
             // MoveAllCheckbox
             // 
             MoveAllCheckbox.AutoSize = true;
-            MoveAllCheckbox.Location = new Point(90, 349);
+            MoveAllCheckbox.Location = new Point(28, 349);
             MoveAllCheckbox.Margin = new Padding(4, 3, 4, 3);
             MoveAllCheckbox.Name = "MoveAllCheckbox";
-            MoveAllCheckbox.Size = new Size(115, 29);
+            MoveAllCheckbox.Size = new Size(72, 19);
             MoveAllCheckbox.TabIndex = 5;
             MoveAllCheckbox.Text = "Move All";
             MoveAllCheckbox.UseVisualStyleBackColor = true;
@@ -169,7 +171,7 @@
             FolderFromInput.Margin = new Padding(4, 3, 4, 3);
             FolderFromInput.Name = "FolderFromInput";
             FolderFromInput.ReadOnly = true;
-            FolderFromInput.Size = new Size(310, 29);
+            FolderFromInput.Size = new Size(310, 21);
             FolderFromInput.TabIndex = 8;
             // 
             // MoveFromSelectBtn
@@ -204,7 +206,7 @@
             FolderToInput.Margin = new Padding(4, 3, 4, 3);
             FolderToInput.Name = "FolderToInput";
             FolderToInput.ReadOnly = true;
-            FolderToInput.Size = new Size(345, 29);
+            FolderToInput.Size = new Size(345, 21);
             FolderToInput.TabIndex = 11;
             // 
             // MoveToBtn
@@ -238,7 +240,7 @@
             OverwriteCheckBox.Location = new Point(24, 35);
             OverwriteCheckBox.Margin = new Padding(4, 3, 4, 3);
             OverwriteCheckBox.Name = "OverwriteCheckBox";
-            OverwriteCheckBox.Size = new Size(245, 29);
+            OverwriteCheckBox.Size = new Size(147, 19);
             OverwriteCheckBox.TabIndex = 0;
             OverwriteCheckBox.Text = "Overwrite existing files";
             OverwriteCheckBox.UseVisualStyleBackColor = true;
@@ -261,9 +263,20 @@
             MoveProgress.Size = new Size(337, 34);
             MoveProgress.TabIndex = 11;
             // 
+            // MediaPackButton
+            // 
+            MediaPackButton.ForeColor = Color.FromArgb(48, 48, 48);
+            MediaPackButton.Location = new Point(180, 346);
+            MediaPackButton.Name = "MediaPackButton";
+            MediaPackButton.Size = new Size(89, 23);
+            MediaPackButton.TabIndex = 7;
+            MediaPackButton.Text = "MediaPack";
+            MediaPackButton.UseVisualStyleBackColor = true;
+            MediaPackButton.Click += MediaPackButton_Click;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(12F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(48, 48, 48);
             ClientSize = new Size(1200, 621);
@@ -274,10 +287,11 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(SubmitBtn);
-            Font = new Font("Montserrat", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 162);
             ForeColor = SystemColors.Control;
             Margin = new Padding(4, 3, 4, 3);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AdvMover";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -312,5 +326,6 @@
         private CheckBox OverwriteCheckBox;
         private CheckBox MoveAllCheckbox;
         private Button RemoveExtensionBtn;
+        private Button MediaPackButton;
     }
 }
